@@ -1,0 +1,1 @@
+export { getNewDeck, getNewDeckInit} from './deck';

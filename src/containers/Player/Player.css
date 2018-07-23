@@ -1,0 +1,9 @@
+.Player {
+    width: 70%;
+    position: fixed;
+    bottom: 20px;
+    left: 15%;
+    height: 170px;
+    border: 1px solid #944317;
+    background-color: #5C9210;
+}
