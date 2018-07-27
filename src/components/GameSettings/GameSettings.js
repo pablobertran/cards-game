@@ -34,14 +34,14 @@ class GameSettings extends Component {
                 valid: false,
                 touched: false
             },
-            deliveryMethod: {
+            playersQty: {
                 elementType: 'select',
                 elementConfig: {
                     options: [
-                        {value: 2, displayValue: '2 Players'},
-                        {value: 3, displayValue: '3 Players'},
-                        {value: 4, displayValue: '4 Players'},
-                        {value: 5, displayValue: '5 Players'}
+                        {value: 1, displayValue: '2 Players'},
+                        {value: 2, displayValue: '3 Players'},
+                        {value: 3, displayValue: '4 Players'},
+                        {value: 4, displayValue: '5 Players'}
                     ]
                 },
                 value: 1,
@@ -54,7 +54,7 @@ class GameSettings extends Component {
         player: {
             name: '',
             email: '',
-            players: 2
+            players: 1
         }
     }
 
@@ -62,11 +62,11 @@ class GameSettings extends Component {
         event.preventDefault();
         this.setState( { loading: true } );
         const formData = {};
-        for (let formElementIdentifier in this.state.orderForm) {
-            formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
+        for (let formElementIdentifier in this.state.settingsForm) {
+            formData[formElementIdentifier] = this.state.settingsForm[formElementIdentifier].value;
         }
 
-        this.props.gameStarted(formData);
+        this.props.defineGameSettings(formData);
     }
 
     checkValidity(value, rules) {

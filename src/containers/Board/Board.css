@@ -1,0 +1,12 @@
+.Board {
+    width: 250px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -125px;
+    margin-left: -125px;
+    border: 3px solid #944317;
+    border-radius: 4px;
+    background:darkgreen;
+}

@@ -8,12 +8,14 @@ import { BrowserRouter } from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import deck from './store/reducers/deck';
+import board from './store/reducers/board';
 import thunk from 'redux-thunk';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    deck: deck
+    deck: deck,
+    board: board
 });
 
 const store = createStore(rootReducer, composeEnhancers(

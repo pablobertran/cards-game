@@ -1,0 +1,10 @@
+.Card {
+    display: block;
+    width: 60px;
+    margin-left: -20px;
+    margin-right: 2px;
+}
+
+.Card img {
+    width: 100%;
+}

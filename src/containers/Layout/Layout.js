@@ -3,8 +3,8 @@ import Aux from '../../hoc/Aux/Aux';
 import classes from './Layout.css';
 import Modal from '../../components/UI/Modal/Modal';
 import GameSettings from '../../components/GameSettings/GameSettings';
-import Button from '../../components/UI/Button/Button';
 import Player from '../Player/Player';
+import OtherPlayer from '../../components/OtherPlayer/OtherPlayer';
 import Board from '../Board/Board';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
@@ -14,7 +14,8 @@ import axios from '../../axios-decks';
 class Layout extends Component {
 
     state = {
-        displayGameConfig: true
+        displayGameConfig: true,
+        playersCreated: false
     }
 
     toggleSettingsHandler = () => {
@@ -23,28 +24,39 @@ class Layout extends Component {
         });
     }
 
-    startGameHandler = (gameSettings) => {
-        this.props.onGetNewDeck(gameSettings);
+    startGame = (gameSettings) => {
+        // Store game settings
+        this.props.onStartGame(gameSettings);
         this.toggleSettingsHandler();
-        // Create players
-        // Draw cards
-        // Start game
     }
 
     render() {
+        let gameBoard = (
+            <Aux>
+                <Board></Board>
+                <Player showSettings={this.toggleSettingsHandler} gameStarted={this.props.gameStarted} cards={null}></Player>
+            </Aux>
+        );
+
+        if(this.props.gameStarted){
+            const playersCollection = Object.values(this.props.players);
+            const players = playersCollection.map( (player, index) => !player.human ? <OtherPlayer player={player} key={index} /> : <Player key={index} gameStarted={this.props.gameStarted} showSettings={null} player={player} />);
+            gameBoard = (
+                <Aux>
+                    {players}
+                    <Board></Board>
+                </Aux>
+            )
+        }
         return(
             <Aux>
                 <main className={classes.Layout}>
-                    <Button disabled={this.state.displayGameConfig}
-                            clicked={this.toggleSettingsHandler}
-                            btnType="SettingsButton">Settings</Button>
-
                     <Modal show={this.state.displayGameConfig} modalClosed={this.toggleSettingsHandler}>
-                        <GameSettings gameStarted={this.startGameHandler}></GameSettings>
+                        <GameSettings gameStarted={this.props.gameStarted}
+                                      defineGameSettings={this.startGame}></GameSettings>
                     </Modal>
 
-                    <Board></Board>
-                    <Player></Player>
+                    {gameBoard}
                 </main>
             </Aux>
         )
@@ -53,13 +65,15 @@ class Layout extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        gameStarted: state.deck.gameStarted,
+        gameSettings: state.deck.gameSettings,
+        players: state.deck.players
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onGetNewDeck: (gameSettings) => dispatch( actions.getNewDeck(gameSettings) )
+        onStartGame: (gameSettings) => dispatch( actions.startNewGame(gameSettings) )
     }
 }
 

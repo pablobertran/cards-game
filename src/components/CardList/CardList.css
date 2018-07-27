@@ -1,0 +1,12 @@
+.CardList {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 30px;
+    left: 10%;
+}
+
+.CardList li {
+    list-style: none;
+    float: left;
+}

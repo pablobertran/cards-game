@@ -1,0 +1,13 @@
+.OtherPlayer {
+    display: block;
+    width: 100px;
+    text-align: center;
+    height: 90px;
+    background: green;
+}
+
+.OtherPlayer.Player0 {
+    position: fixed;
+    left:20px;
+    top: 250px;
+}
