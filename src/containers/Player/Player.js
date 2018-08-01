@@ -27,7 +27,7 @@ class Player extends Component {
             player = (
                 <Aux>
                     <div className={classes.Score}>Score: <span>{this.props.player.score}</span></div>
-                    <Hand disabled={this.props.currentPlayer !== this.props.player.id} cards={this.props.player.cards} playCard={this.playCardHandler}></Hand>
+                    <Hand disabled={this.props.currentPlayer !== this.props.player.key} cards={this.props.player.cards} playCard={this.playCardHandler}></Hand>
                 </Aux>
             );
         }
@@ -43,7 +43,7 @@ const mapStateToProps = state => {
     return {
         deck: state.deck.deckId,
         players: state.deck.players,
-        currentPlayer: state.deck.currentPlayer
+        currentPlayer: state.board.currentPlayer
     }
 }
 

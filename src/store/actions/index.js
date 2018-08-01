@@ -1,2 +1,2 @@
-export { getNewDeck, startNewGame, createPlayers, onCardPlayed} from './deck';
-export { onPlayCard } from './board';
+export { getNewDeck, startNewGame, createPlayers, onCardPlayed, anotherMatch } from './deck';
+export { onPlayCard, onDiscardRound } from './board';

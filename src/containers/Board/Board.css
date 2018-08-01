@@ -10,3 +10,10 @@
     border-radius: 4px;
     background:darkgreen;
 }
+
+@media screen and (max-width: 600px){
+    .Board {
+        height: 120px;
+        top: 65%;
+    }
+}

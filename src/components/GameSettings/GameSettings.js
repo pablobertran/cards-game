@@ -20,20 +20,6 @@ class GameSettings extends Component {
                 valid: false,
                 touched: false
             },
-            email: {
-                elementType: 'input',
-                elementConfig: {
-                    type: 'email',
-                    placeholder: 'Your E-Mail'
-                },
-                value: '',
-                validation: {
-                    required: false,
-                    isEmail: true
-                },
-                valid: false,
-                touched: false
-            },
             playersQty: {
                 elementType: 'select',
                 elementConfig: {
@@ -53,7 +39,6 @@ class GameSettings extends Component {
         loading: false,
         player: {
             name: '',
-            email: '',
             players: 1
         }
     }

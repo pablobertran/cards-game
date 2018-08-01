@@ -6,6 +6,7 @@ import GameSettings from '../../components/GameSettings/GameSettings';
 import Player from '../Player/Player';
 import OtherPlayer from '../../components/OtherPlayer/OtherPlayer';
 import Board from '../Board/Board';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
@@ -25,7 +26,6 @@ class Layout extends Component {
     }
 
     startGame = (gameSettings) => {
-        // Store game settings
         this.props.onStartGame(gameSettings);
         this.toggleSettingsHandler();
     }
@@ -40,7 +40,7 @@ class Layout extends Component {
 
         if(this.props.gameStarted){
             const playersCollection = Object.values(this.props.players);
-            const players = playersCollection.map( (player, index) => !player.human ? <OtherPlayer player={player} key={index} /> : <Player key={index} gameStarted={this.props.gameStarted} showSettings={null} player={player} />);
+            const players = playersCollection.map( (player, index) => !player.human ? <OtherPlayer player={player} key={index} currentPlayer={this.props.currentPlayer} /> : <Player key={index} gameStarted={this.props.gameStarted} showSettings={null} player={player} />);
             gameBoard = (
                 <Aux>
                     {players}
@@ -48,9 +48,13 @@ class Layout extends Component {
                 </Aux>
             )
         }
+
+        const spinner = this.props.loading ? <Spinner></Spinner> : null;
+
         return(
             <Aux>
                 <main className={classes.Layout}>
+                    {spinner}
                     <Modal show={this.state.displayGameConfig} modalClosed={this.toggleSettingsHandler}>
                         <GameSettings gameStarted={this.props.gameStarted}
                                       defineGameSettings={this.startGame}></GameSettings>
@@ -67,7 +71,9 @@ const mapStateToProps = state => {
     return {
         gameStarted: state.deck.gameStarted,
         gameSettings: state.deck.gameSettings,
-        players: state.deck.players
+        players: state.deck.players,
+        currentPlayer: state.board.currentPlayer,
+        loading: state.board.loading || state.deck.loading
     }
 }
 

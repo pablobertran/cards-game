@@ -6,8 +6,50 @@
     background: green;
 }
 
+.OtherPlayer img {
+    width: 50px;
+    position: absolute;
+    top: -40px;
+    left: 25px;
+}
+
 .OtherPlayer.Player0 {
     position: fixed;
     left:20px;
     top: 250px;
+}
+
+.OtherPlayer.Player1 {
+    position: fixed;
+    left:160px;
+    top: 150px;
+}
+
+.OtherPlayer.Player2 {
+    position: fixed;
+    left:420px;
+    top: 150px;
+}
+
+.OtherPlayer.Player3 {
+    position: fixed;
+    right:20px;
+    top: 250px;
+}
+
+@media screen and (max-width: 600px){
+    .OtherPlayer.Player0, .OtherPlayer.Player3 {
+        top: 150px;
+    }
+
+    .OtherPlayer.Player1 {
+        left: 50px;
+        top: 50px
+    }
+
+    .OtherPlayer.Player2 {
+        left: initial;
+        right: 50px;
+        top: 50px;
+    }
 }
