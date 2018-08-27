@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classes from './Board.css';
 import CardList from '../../components/CardList/CardList';
 import ScoreBoard from '../../components/ScoreBoard/ScoreBoard';
-import Aux from '../../hoc/Aux/Aux';
+import Auxiliar from '../../hoc/Auxiliar/Auxiliar';
 import * as actions from '../../store/actions/';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import { connect } from 'react-redux';
@@ -60,12 +60,12 @@ class Board extends Component {
     render() {
         const scoreBoard = this.props.gameEnded ? <ScoreBoard></ScoreBoard> : null;
         return (
-            <Aux>
+            <Auxiliar>
                 { scoreBoard }
                 <div className={classes.Board}>
                     <CardList playCard={null} cards={this.props.cardsOnBoard} board={true}></CardList>
                 </div>
-            </Aux>
+            </Auxiliar>
         );
     }
 }

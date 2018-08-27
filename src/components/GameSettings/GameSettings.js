@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../../hoc/Aux/Aux';
+import Auxiliar from '../../hoc/Auxiliar/Auxiliar';
 import Input from '../UI/Input/Input';
 import Button from '../UI/Button/Button';
 
@@ -115,7 +115,7 @@ class GameSettings extends Component {
         }
 
         return (
-            <Aux>
+            <Auxiliar>
                 <form onSubmit={this.gameStartHandler}>
                     {formElementsArray.map(formElement => (
                         <Input
@@ -130,7 +130,7 @@ class GameSettings extends Component {
                     ))}
                     <Button btnType="Success" disabled={!this.state.formIsValid}>START</Button>
                 </form>
-            </Aux>
+            </Auxiliar>
         );
     }
 }

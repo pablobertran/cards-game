@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../../hoc/Aux/Aux';
+import Auxiliar from '../../hoc/Auxiliar/Auxiliar';
 import Modal from '../UI/Modal/Modal';
 import Button from '../UI/Button/Button';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
@@ -53,7 +53,7 @@ class ScoreBoard extends Component {
             return player.score === higherScore;
         }) );
         return (
-            <Aux>
+            <Auxiliar>
                 <Modal show={this.state.show} modalClosed={this.endGameHandler}>
                     <h2>Winners</h2>
                     <ul>
@@ -72,7 +72,7 @@ class ScoreBoard extends Component {
                             btnType="Danger"
                             clicked={this.endGameHandler}>End Game</Button>
                 </Modal>
-            </Aux>
+            </Auxiliar>
         );
     }
 }

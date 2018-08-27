@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Aux from '../../hoc/Aux/Aux';
+import Auxiliar from '../../hoc/Auxiliar/Auxiliar';
 import Button from '../../components/UI/Button/Button';
 import Hand from '../Hand/Hand';
 import classes from './Player.css';
@@ -18,17 +18,17 @@ class Player extends Component {
 
     render() {
         let player = (
-            <Aux>
+            <Auxiliar>
                 <h4>No game in course.</h4>
                 <Button disabled={false} btnType="Error" clicked={this.props.showSettings}>Start Game</Button>
-            </Aux>
+            </Auxiliar>
         );
         if (this.props.gameStarted) {
             player = (
-                <Aux>
+                <Auxiliar>
                     <div className={classes.Score}>Score: <span>{this.props.player.score}</span></div>
                     <Hand disabled={this.props.currentPlayer !== this.props.player.key} cards={this.props.player.cards} playCard={this.playCardHandler}></Hand>
-                </Aux>
+                </Auxiliar>
             );
         }
         return (

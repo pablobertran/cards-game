@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Aux from '../../hoc/Aux/Aux';
+import Auxiliar from '../../hoc/Auxiliar/Auxiliar';
 import classes from './Layout.css';
 import Modal from '../../components/UI/Modal/Modal';
 import GameSettings from '../../components/GameSettings/GameSettings';
@@ -32,27 +32,27 @@ class Layout extends Component {
 
     render() {
         let gameBoard = (
-            <Aux>
+            <Auxiliar>
                 <Board></Board>
                 <Player showSettings={this.toggleSettingsHandler} gameStarted={this.props.gameStarted} cards={null}></Player>
-            </Aux>
+            </Auxiliar>
         );
 
         if(this.props.gameStarted){
             const playersCollection = Object.values(this.props.players);
             const players = playersCollection.map( (player, index) => !player.human ? <OtherPlayer player={player} key={index} currentPlayer={this.props.currentPlayer} /> : <Player key={index} gameStarted={this.props.gameStarted} showSettings={null} player={player} />);
             gameBoard = (
-                <Aux>
+                <Auxiliar>
                     {players}
                     <Board></Board>
-                </Aux>
+                </Auxiliar>
             )
         }
 
         const spinner = this.props.loading ? <Spinner></Spinner> : null;
 
         return(
-            <Aux>
+            <Auxiliar>
                 <main className={classes.Layout}>
                     {spinner}
                     <Modal show={this.state.displayGameConfig} modalClosed={this.toggleSettingsHandler}>
@@ -62,7 +62,7 @@ class Layout extends Component {
 
                     {gameBoard}
                 </main>
-            </Aux>
+            </Auxiliar>
         )
     }
 }
